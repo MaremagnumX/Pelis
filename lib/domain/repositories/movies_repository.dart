@@ -1,5 +1,5 @@
 import 'package:pelis/domain/entities/movie.dart';
 
-abstract class MovieRespository {
+abstract class MoviesRepository {
   Future<List<Movie>> getNowPlaying({int page = 1});
 }
