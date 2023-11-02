@@ -1,5 +1,5 @@
-import 'package:pelis/domain/datasources/movies_datasource.dart';
 import 'package:pelis/domain/entities/movie.dart';
+import 'package:pelis/domain/datasources/movies_datasource.dart';
 import 'package:pelis/domain/repositories/movies_repository.dart';
 
 class MovieRepositoryImpl extends MoviesRepository {
