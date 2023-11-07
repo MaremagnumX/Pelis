@@ -29,12 +29,18 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   void initState() {
     super.initState();
     ref.read(nowPlayinMoviesProvider.notifier).loadNextPage();
+    ref.read(popularMoviesProvider.notifier).loadNextPage();
+    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
+    ref.read(upComingMoviesProvider.notifier).loadNextPage();
   }
 
   @override
   Widget build(BuildContext context) {
-    final nowPlayingMovies = ref.watch(nowPlayinMoviesProvider);
     final moviesSlideshow = ref.watch(moviesSlideshowProvider);
+    final nowPlayingMovies = ref.watch(nowPlayinMoviesProvider);
+    final popularMovies = ref.watch(popularMoviesProvider);
+    final upComingMovies = ref.watch(upComingMoviesProvider);
+    final topRatedMovies = ref.watch(topRatedMoviesProvider);
     return CustomScrollView(
       slivers: [
         const SliverAppBar(
@@ -59,28 +65,27 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                         .loadNextPage(),
                   ),
                   MovieHorizontalListview(
-                    movies: nowPlayingMovies,
+                    movies: upComingMovies,
                     title: 'Proximamente',
                     subtitle: 'En este mes',
                     loadNextPage: () => ref
-                        .read(nowPlayinMoviesProvider.notifier)
+                        .read(upComingMoviesProvider.notifier)
                         .loadNextPage(),
                   ),
                   MovieHorizontalListview(
-                    movies: nowPlayingMovies,
+                    movies: topRatedMovies,
                     title: 'Mejor calificadas',
                     subtitle: 'De todos los tiempos',
                     loadNextPage: () => ref
-                        .read(nowPlayinMoviesProvider.notifier)
+                        .read(topRatedMoviesProvider.notifier)
                         .loadNextPage(),
                   ),
                   MovieHorizontalListview(
-                    movies: nowPlayingMovies,
+                    movies: popularMovies,
                     title: 'Populares',
                     //subtitle: 'En este mes',
-                    loadNextPage: () => ref
-                        .read(nowPlayinMoviesProvider.notifier)
-                        .loadNextPage(),
+                    loadNextPage: () =>
+                        ref.read(popularMoviesProvider.notifier).loadNextPage(),
                   ),
                   const SizedBox(height: 10)
                 ],
