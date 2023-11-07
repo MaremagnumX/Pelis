@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:pelis/config/helpers/huma_formats.dart';
 import 'package:pelis/domain/entities/movie.dart';
 
 class MovieHorizontalListview extends StatelessWidget {
@@ -52,7 +53,6 @@ class _Slide extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //* Imagen
           SizedBox(
@@ -88,24 +88,27 @@ class _Slide extends StatelessWidget {
           ),
 
           //*Rating
-          Row(
-            children: [
-              Icon(
-                Icons.star_half_outlined,
-                color: Colors.yellow.shade800,
-              ),
-              const SizedBox(width: 3),
-              Text(
-                '${movie.voteAverage}',
-                style: textStyle.bodyMedium
-                    ?.copyWith(color: Colors.yellow.shade800),
-              ),
-              const SizedBox(width: 3),
-              Text(
-                '${movie.popularity}',
-                style: textStyle.bodySmall,
-              )
-            ],
+          SizedBox(
+            width: 150,
+            child: Row(
+              children: [
+                Icon(
+                  Icons.star_half_outlined,
+                  color: Colors.yellow.shade800,
+                ),
+                const SizedBox(width: 3),
+                Text(
+                  HumanFormats.roundDoubleNumber(movie.voteAverage),
+                  style: textStyle.bodyMedium
+                      ?.copyWith(color: Colors.yellow.shade800),
+                ),
+                const Spacer(),
+                Text(
+                  HumanFormats.number(movie.popularity),
+                  style: textStyle.bodySmall,
+                ),
+              ],
+            ),
           )
         ],
       ),
