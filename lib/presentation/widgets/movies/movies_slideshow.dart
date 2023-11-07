@@ -28,7 +28,7 @@ class MoviesSlideshow extends StatelessWidget {
         autoplay: true,
         viewportFraction:
             MediaQuery.of(context).orientation == Orientation.portrait
-                ? 0.7
+                ? 0.8
                 : 0.4,
         itemCount: movies.length,
         itemBuilder: (context, index) => _Slide(
