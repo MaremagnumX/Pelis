@@ -39,8 +39,76 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
         physics: const ClampingScrollPhysics(),
         slivers: [
           _CustomSleaverAppbar(movie: movie),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+                (context, index) => _MovieDetail(movie: movie),
+                childCount: 1),
+          ),
         ],
       ),
+    );
+  }
+}
+
+class _MovieDetail extends StatelessWidget {
+  final Movie movie;
+
+  const _MovieDetail({required this.movie});
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final textStyle = Theme.of(context).textTheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  movie.posterPath,
+                  width: size.width * 0.3,
+                ),
+              ),
+              const SizedBox(width: 10),
+              SizedBox(
+                width: (size.width - 37.15) * 0.7,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        movie.title,
+                        style: textStyle.titleLarge,
+                        textAlign: TextAlign.start,
+                      ),
+                      Text(movie.overview)
+                    ]),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Wrap(
+            children: [
+              ...movie.genreIds.map((gender) => Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    child: Chip(
+                      label: Text(gender),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                  ))
+            ],
+          ),
+        ),
+        //TODO: lista actores de la pelicula
+        const SizedBox(height: 100),
+      ],
     );
   }
 }
