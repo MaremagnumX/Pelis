@@ -7,7 +7,7 @@ class ActorMapper {
         name: cast.name,
         profilePath: cast.profilePath != null
             ? 'https://image.tmdb.org/t/p/w500${cast.profilePath}'
-            : 'https://linnea.com.ar/wp-content/uploads/2018/09/404PosterNotFound-400x559.jpg',
+            : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
         charcater: cast.character,
       );
 }
