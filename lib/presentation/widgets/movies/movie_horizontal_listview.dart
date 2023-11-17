@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pelis/config/helpers/huma_formats.dart';
 import 'package:pelis/domain/entities/movie.dart';
 
@@ -107,7 +108,10 @@ class _Slide extends StatelessWidget {
                       ),
                     );
                   }
-                  return FadeIn(child: child);
+                  return GestureDetector(
+                    onTap: () => context.go('/movie/${movie.id}'),
+                    child: FadeIn(child: child),
+                  );
                 },
               ),
             ),
@@ -136,6 +140,11 @@ class _Slide extends StatelessWidget {
                       ?.copyWith(color: Colors.yellow.shade800),
                 ),
                 const Spacer(),
+                Icon(
+                  Icons.trending_up_outlined,
+                  color: Colors.red.shade600,
+                ),
+                const SizedBox(width: 3),
                 Text(
                   HumanFormats.number(movie.popularity),
                   style: textStyle.bodySmall,
