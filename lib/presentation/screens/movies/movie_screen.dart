@@ -161,16 +161,20 @@ class _ActorByMovie extends ConsumerWidget {
                 const SizedBox(
                   height: 5,
                 ),
-                Text(
-                  actor.name,
-                  maxLines: 2,
+                FadeInRight(
+                  child: Text(
+                    actor.name,
+                    maxLines: 2,
+                  ),
                 ),
-                Text(
-                  actor.charcater ?? '',
-                  maxLines: 2,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      overflow: TextOverflow.ellipsis),
+                FadeInRight(
+                  child: Text(
+                    actor.charcater ?? '',
+                    maxLines: 2,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis),
+                  ),
                 ),
               ],
             ),
