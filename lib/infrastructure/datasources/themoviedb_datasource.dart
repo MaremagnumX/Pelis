@@ -1,12 +1,9 @@
 import 'package:dio/dio.dart';
-
 import 'package:pelis/config/constants/environment.dart';
-
-import 'package:pelis/domain/entities/movie.dart';
 import 'package:pelis/domain/datasources/movies_datasource.dart';
-
+import 'package:pelis/domain/entities/movie.dart';
 import 'package:pelis/infrastructure/mappers/movie_mapper.dart';
-import 'package:pelis/infrastructure/models/models.dart';
+import 'package:pelis/infrastructure/models/moviedb/moviedb_response.dart';
 
 class TheMovieDbDatasource extends MoviesDatasource {
   final dio = Dio(
@@ -55,19 +52,5 @@ class TheMovieDbDatasource extends MoviesDatasource {
     final response =
         await dio.get('/movie/upcoming', queryParameters: {'page': page});
     return _jsonToMovies(response.data);
-  }
-
-  @override
-  Future<Movie> getMovieById(String id) async {
-    final response = await dio.get('/movie/$id');
-    if (response.statusCode != 200) {
-      throw Exception('Movie with id: $id not found');
-    }
-
-    final movieDetails = MovieDetailsResponse.fromJson(response.data);
-
-    final Movie movie = MovieMapper.movieDetailsToEntity(movieDetails);
-
-    return movie;
   }
 }
