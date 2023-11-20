@@ -55,21 +55,21 @@ class MovieDetailsResponse {
 
   factory MovieDetailsResponse.fromJson(Map<String, dynamic> json) =>
       MovieDetailsResponse(
-        adult: json["adult"],
+        adult: json["adult"] ?? true,
         backdropPath: json["backdrop_path"] ?? '',
         belongsToCollection: json["belongs_to_collection"] == null
             ? null
             : BelongsToCollection.fromJson(json["belongs_to_collection"]),
-        budget: json["budget"],
+        budget: json["budget"] ?? 0,
         genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
-        homepage: json["homepage"],
-        id: json["id"],
-        imdbId: json["imdb_id"],
-        originalLanguage: json["original_language"],
-        originalTitle: json["original_title"],
-        overview: json["overview"],
+        homepage: json["homepage"] ?? '',
+        id: json["id"] ?? '',
+        imdbId: json["imdb_id"] ?? '',
+        originalLanguage: json["original_language"] ?? '',
+        originalTitle: json["original_title"] ?? '',
+        overview: json["overview"] ?? '',
         popularity: json["popularity"]?.toDouble(),
-        posterPath: json["poster_path"],
+        posterPath: json["poster_path"] ?? '',
         productionCompanies: List<ProductionCompany>.from(
             json["production_companies"]
                 .map((x) => ProductionCompany.fromJson(x))),
@@ -77,16 +77,16 @@ class MovieDetailsResponse {
             json["production_countries"]
                 .map((x) => ProductionCountry.fromJson(x))),
         releaseDate: DateTime.parse(json["release_date"]),
-        revenue: json["revenue"],
-        runtime: json["runtime"],
+        revenue: json["revenue"] ?? 0,
+        runtime: json["runtime"] ?? 0,
         spokenLanguages: List<SpokenLanguage>.from(
             json["spoken_languages"].map((x) => SpokenLanguage.fromJson(x))),
-        status: json["status"],
-        tagline: json["tagline"],
-        title: json["title"],
-        video: json["video"],
+        status: json["status"] ?? '',
+        tagline: json["tagline"] ?? '',
+        title: json["title"] ?? '',
+        video: json["video"] ?? false,
         voteAverage: json["vote_average"]?.toDouble(),
-        voteCount: json["vote_count"],
+        voteCount: json["vote_count"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -117,7 +117,7 @@ class MovieDetailsResponse {
         "tagline": tagline,
         "title": title,
         "video": video,
-        "vote_average": voteAverage,
+        "vote_aveonMovieSelectedrage": voteAverage,
         "vote_count": voteCount,
       };
 }
