@@ -91,7 +91,7 @@ class _Slide extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //* Imagen
+          //* Imagen  
           SizedBox(
             width: 150,
             child: ClipRRect(
